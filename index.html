@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f0e4">
+  <meta name="description" content="一份藏在小小冒险里的生日惊喜。">
+  <title>给你的生日寻宝任务</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="app" aria-live="polite">
+    <!-- 01 首页 -->
+    <section class="scene active" data-page="home" aria-label="生日寻宝首页">
+      <div class="scene-inner home-layout">
+        <div class="topline">
+          <span class="eyebrow">A LITTLE BIRTHDAY QUEST</span>
+          <span class="page-no">01 / 06</span>
+        </div>
+        <div class="home-copy">
+          <p class="kicker">A SECRET MISSION FOR YOU</p>
+          <h1>你收到一份<br>来自远方的神秘任务</h1>
+          <p class="lead">有一份特别的惊喜正在等待它的主人。<br>准备好开启今天的小小冒险了吗？</p>
+        </div>
+        <img class="hero-pair" src="assets/characters/duo-umbrella.png" alt="两只小狗一起撑伞">
+        <div class="button-stack">
+          <button class="btn primary" data-go="letter">开始冒险</button>
+          <p class="tiny-hint">建议打开声音 · 全程约 3–5 分钟</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 神秘来信 -->
+    <section class="scene" data-page="letter" aria-label="神秘来信">
+      <div class="scene-inner">
+        <header class="scene-header">
+          <button class="back-btn" data-back="home" aria-label="返回上一页">‹</button>
+          <div><span class="eyebrow">THE FIRST CLUE</span><h2>一封专属来信</h2></div>
+          <span class="page-no">02 / 06</span>
+        </header>
+        <div class="letter-stage">
+          <img id="envelopeArt" class="letter-art" src="assets/props/envelope-closed.png" alt="一封系着爱心的信封">
+          <div id="letterText" class="paper-copy hidden">
+            <p>你好呀，今天的主角。</p>
+            <p>这里有一份专门为你准备的生日宝藏。不过，它被藏在了几个小秘密里。</p>
+            <p>你需要找回散落的记忆碎片，才能打开最后的礼物。</p>
+            <p class="signature">—— 来自远方的寻宝搭档</p>
+          </div>
+          <img class="corner-puppy" src="assets/characters/yellow-letter.png" alt="抱着信封的小黄狗">
+        </div>
+        <div class="button-stack">
+          <button id="openLetterBtn" class="btn primary">拆开信封</button>
+          <button id="toMemoryBtn" class="btn secondary hidden" data-go="memory">寻找第一条线索</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 回忆博物馆 -->
+    <section class="scene" data-page="memory" aria-label="回忆博物馆">
+      <div class="scene-inner">
+        <header class="scene-header">
+          <button class="back-btn" data-back="letter" aria-label="返回上一页">‹</button>
+          <div><span class="eyebrow">MEMORY MUSEUM</span><h2>记忆碎片 · 第一站</h2></div>
+          <span class="page-no">03 / 06</span>
+        </header>
+        <p class="instruction">有些回忆，被悄悄藏进了这些小物件里。<br>点开它们，找回属于我们的碎片吧。</p>
+        <div class="memory-counter"><span id="memoryCount">0</span> / 3 枚记忆碎片</div>
+        <div class="memory-grid">
+          <button class="memory-item" data-memory="0">
+            <img src="assets/props/polaroid-frame.png" alt="">
+            <span data-memory-label="0">那一次见面</span>
+          </button>
+          <button class="memory-item" data-memory="1">
+            <img src="assets/props/sticky-note.png" alt="">
+            <span data-memory-label="1">那些小默契</span>
+          </button>
+          <button class="memory-item" data-memory="2">
+            <img src="assets/props/memory-card.png" alt="">
+            <span data-memory-label="2">分享的日常</span>
+          </button>
+        </div>
+        <img class="memory-puppy" src="assets/characters/brown-camera.png" alt="拿着相机的小棕狗">
+        <div class="button-stack">
+          <button id="toPuzzleBtn" class="btn primary" disabled>收集完毕后继续</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 友情暗号 -->
+    <section class="scene" data-page="puzzle" aria-label="友情暗号">
+      <div class="scene-inner">
+        <header class="scene-header">
+          <button class="back-btn" data-back="memory" aria-label="返回上一页">‹</button>
+          <div><span class="eyebrow">FRIENDSHIP PASSWORD</span><h2>友情暗号挑战</h2></div>
+          <span class="page-no">04 / 06</span>
+        </header>
+        <div class="puzzle-illustration">
+          <img src="assets/props/lock-closed.png" alt="小锁">
+          <img src="assets/props/key.png" alt="钥匙">
+        </div>
+        <div class="question-card">
+          <p class="kicker">QUESTION 01</p>
+          <h3 id="quizQuestion">以下哪一个，最像我们之间的专属暗号？</h3>
+          <div class="answer-list">
+            <button class="answer" data-answer="A"><b>A</b><span data-option-label="A">今天也要努力呀</span></button>
+            <button class="answer" data-answer="B"><b>B</b><span data-option-label="B">那个只有我们懂的梗</span></button>
+            <button class="answer" data-answer="C"><b>C</b><span data-option-label="C">明天再说吧</span></button>
+          </div>
+        </div>
+        <p id="puzzleFeedback" class="feedback" role="status"></p>
+        <button id="submitAnswerBtn" class="btn primary">提交答案</button>
+        <button id="toWishesBtn" class="btn secondary hidden" data-go="wishes">打开下一扇门</button>
+      </div>
+    </section>
+
+    <!-- 05 星愿收集 -->
+    <section class="scene" data-page="wishes" aria-label="星愿收集">
+      <div class="scene-inner">
+        <header class="scene-header">
+          <button class="back-btn" data-back="puzzle" aria-label="返回上一页">‹</button>
+          <div><span class="eyebrow">WISH UPON A STAR</span><h2>点亮属于你的星愿</h2></div>
+          <span class="page-no">05 / 06</span>
+        </header>
+        <p class="instruction">点亮三颗小星星，每一颗里面<br>都藏着一份想送给你的祝福。</p>
+        <div class="wish-sky">
+          <button class="wish-star" data-star="0" aria-label="点亮第一颗星星"><img src="assets/props/star-off.png" alt=""></button>
+          <button class="wish-star" data-star="1" aria-label="点亮第二颗星星"><img src="assets/props/star-off.png" alt=""></button>
+          <button class="wish-star" data-star="2" aria-label="点亮第三颗星星"><img src="assets/props/star-off.png" alt=""></button>
+        </div>
+        <div class="wish-count"><span id="starCount">0</span> / 3 颗星星已点亮</div>
+        <img class="wish-puppy" src="assets/characters/duo-map.png" alt="两只小狗一起寻找星愿">
+        <button id="toTreasureBtn" class="btn primary" disabled>点亮全部星星后继续</button>
+      </div>
+    </section>
+
+    <!-- 06 最终宝藏 -->
+    <section class="scene" data-page="treasure" aria-label="最终宝藏">
+      <div class="scene-inner treasure-layout">
+        <header class="scene-header centered">
+          <div><span class="eyebrow">THE LAST TREASURE</span><h2>最终宝藏已解锁</h2></div>
+          <span class="page-no">06 / 06</span>
+        </header>
+        <button id="giftBtn" class="gift-button" aria-label="打开生日礼物">
+          <img id="giftArt" src="assets/props/gift-closed.png" alt="还未打开的生日礼物盒">
+          <span id="giftHint">点击礼物盒，看看里面藏着什么</span>
+        </button>
+        <img class="celebrate-puppies" src="assets/characters/duo-birthday.png" alt="两只小狗一起庆祝生日">
+        <div id="birthdayLetter" class="birthday-letter hidden">
+          <h3 id="birthdayTitle">生日快乐呀！</h3>
+          <div id="birthdayParagraphs">
+            <p>恭喜你完成了这场小小的冒险。</p>
+            <p>虽然现在我们不在同一个地方，不能随时见面，但还是想把这份特别的心意送到你身边。</p>
+            <p>希望新的一岁，你可以继续做自己喜欢的事情，遇到更多有趣的人，拥有更多值得收藏的快乐。</p>
+            <p>以后也要一起创造更多新的回忆呀！</p>
+          </div>
+          <p id="birthdaySignature" class="signature">—— 想念你的朋友</p>
+        </div>
+        <div class="button-stack">
+          <button id="restartBtn" class="btn secondary hidden">从头再玩一次</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button id="modalClose" class="modal-close" aria-label="关闭">×</button>
+      <img src="assets/props/sparkle-stars.png" alt="" class="modal-sparkle">
+      <h3 id="modalTitle">找到一枚记忆碎片</h3>
+      <p id="modalBody"></p>
+      <button id="modalOk" class="btn primary">收下这份回忆</button>
+    </div>
+  </div>
+
+  <script src="js/content.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
