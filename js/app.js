@@ -102,9 +102,10 @@
       $$('.answer[data-answer="B"]').forEach(el => el.classList.add("correct"));
     }
     if (state.giftOpened) {
-      $("#giftArt").src = "assets/props/gift-open.png";
-      $("#giftArt").alt = "已经打开的生日礼物盒";
-      $("#giftHint").textContent = "宝藏已经打开啦";
+      $("#giftArt").src = "assets/photos/treasure-necklace.jpg";
+      $("#giftArt").alt = "送给你的项链礼物";
+      $("#giftArt").classList.add("revealed-art");
+      $("#giftHint").textContent = "这条项链，送给特别的你";
       $("#birthdayLetter").classList.remove("hidden");
       $("#restartBtn").classList.remove("hidden");
     }
@@ -184,6 +185,8 @@
     $("#birthdayLetter").classList.add("hidden");
     $("#restartBtn").classList.add("hidden");
     $("#giftArt").src = "assets/props/gift-closed.png";
+    $("#giftArt").alt = "还未打开的生日礼物盒";
+    $("#giftArt").classList.remove("revealed-art");
     $("#giftHint").textContent = "点击礼物盒，看看里面藏着什么";
     render();
   });

@@ -213,6 +213,7 @@ h3 { font-size: 18px; line-height: 1.5; }
   color: #887762; font-size: 12px;
 }
 .gift-button img { width: min(60vw, 245px); height: min(27vh, 240px); object-fit: contain; }
+.gift-button img.revealed-art { width: min(66vw, 280px); height: min(36vh, 330px); object-fit: contain; border-radius: 14px; box-shadow: 0 8px 22px rgba(100, 78, 54, .12); }
 .celebrate-puppies { width: min(78%, 310px); max-height: 22vh; object-fit: contain; margin: 0 auto 8px; }
 .birthday-letter {
   width: min(100%, 420px); padding: 18px 20px; border-radius: 22px;
