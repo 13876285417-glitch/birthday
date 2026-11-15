@@ -12,6 +12,33 @@
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
+  const backgroundMusic = $("#backgroundMusic");
+  const giftBell = $("#giftBell");
+
+  // 在首页“开始冒险”的用户点击中启动；音频节点常驻页面，切页时不会重置。
+  function startBackgroundMusic() {
+    if (!backgroundMusic) return;
+    backgroundMusic.volume = 0.25;
+    backgroundMusic.loop = true;
+    if (backgroundMusic.paused) {
+      const playRequest = backgroundMusic.play();
+      if (playRequest && typeof playRequest.catch === "function") {
+        playRequest.catch(() => {});
+      }
+    }
+  }
+
+  // 礼物首次打开时播放一次轻柔铃声。
+  function playGiftBell() {
+    if (!giftBell) return;
+    giftBell.volume = 0.55;
+    giftBell.currentTime = 0;
+    const playRequest = giftBell.play();
+    if (playRequest && typeof playRequest.catch === "function") {
+      playRequest.catch(() => {});
+    }
+  }
+
   function loadState() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -111,7 +138,12 @@
     }
   }
 
-  $$("[data-go]").forEach(button => button.addEventListener("click", () => showPage(button.dataset.go)));
+  $$("[data-go]").forEach(button => button.addEventListener("click", () => {
+    if (button.dataset.go === "letter" && state.page === "home") {
+      startBackgroundMusic();
+    }
+    showPage(button.dataset.go);
+  }));
   $$("[data-back]").forEach(button => button.addEventListener("click", () => showPage(button.dataset.back)));
 
   $("#openLetterBtn").addEventListener("click", () => {
@@ -168,6 +200,7 @@
 
   $("#giftBtn").addEventListener("click", () => {
     if (state.giftOpened) return;
+    playGiftBell();
     state.giftOpened = true; saveState(); render();
   });
   $("#restartBtn").addEventListener("click", () => {
